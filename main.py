@@ -1,26 +1,36 @@
-from google import genai
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+import google.generativeai as genai
+from flask import Flask, request, jsonify, send_from_directory
+import os
 
-app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+app = Flask(__name__, static_folder='.', static_url_path='')
 
-# Initialize the client
-client = genai.Client(api_key="AIzaSyC7FFNXKUJyifOj7HGWquxdQ61SrYm9Xj8")
+# Configure the API key
+genai.configure(api_key="AIzaSyC7FFNXKUJyifOj7HGWquxdQ61SrYm9Xj8")
 
-# Create a chat session
-chat = client.chats.create(model="models/gemini-2.0-flash")
+# Initialize the model
+model = genai.GenerativeModel('gemini-2.5-flash')
 
+# Start a chat session
+chat = model.start_chat()
+
+# Serve the main HTML file
+@app.route('/')
+def serve_index():
+    return send_from_directory('.', 'index.html')
+
+# Chat API endpoint
 @app.route("/chat", methods=["POST"])
 def chat_endpoint():
     data = request.get_json()
     message = data.get('message', '')
     
     try:
-        res = chat.send_message(message)
+        # Get response from the model
+        response = chat.send_message(message)
+        
         return jsonify({
             "success": True,
-            "response": res.text
+            "response": response.text
         })
     except Exception as e:
         return jsonify({
@@ -28,5 +38,11 @@ def chat_endpoint():
             "error": str(e)
         }), 500
 
+# Serve static files (CSS, JS, etc.)
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('.', path)
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    # Run on all network interfaces (0.0.0.0) for external access
+    app.run(host='0.0.0.0', port=5001, debug=True)

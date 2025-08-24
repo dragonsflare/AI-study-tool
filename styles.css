@@ -1,0 +1,151 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Container */
+  .container {
+    width: 400px;
+    height: 600px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  /* Header */
+  .container h1 {
+    background: #0078ff;
+    color: white;
+    margin: 0;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  /* Chat area */
+  #response {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f9f9f9;
+  }
+  
+  /* Messages */
+  .message {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 16px;
+    word-wrap: break-word;
+    max-width: 70%;
+  }
+  
+  .user {
+    align-self: flex-end;
+    background: #0078ff;
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .bot {
+    align-self: flex-start;
+    background: #e5e5ea;
+    color: black;
+    border-bottom-left-radius: 4px;
+  }
+  
+  /* Input form */
+  form {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+  }
+  
+  form input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+  
+  form button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #0078ff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    background: #005fcc;
+  }
+  .bot p {
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+  .bot strong {
+    font-weight: 600;
+    color: #333;
+  }
+  .bot ul {
+    margin-left: 20px;
+    list-style-type: disc;
+  }
+  /* Container for the dots */
+.loading-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px; /* Adjust height to prevent jumping */
+  }
+  
+  /* Individual dot styling */
+  .loading-dots span {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px; /* Space between the dots */
+    background-color: black;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: bounce 1.2s infinite;
+  }
+  
+  /* Apply staggered animation delays */
+  .loading-dots span:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  
+  .loading-dots span:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  
+  .loading-dots span:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  /* Define the bounce animation */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translateY(-8px);
+      opacity: 1;
+    }
+  }

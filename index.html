@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
     <title>AI Study Tool</title>
 </head>
 <body>
-    <h1>AI Study Tool</h1>
-    <form>
-        <input type="text" name="message" id="message" placeholder="Enter your message">
-        <button type="button" onclick="handleSubmit()">Send</button>
-    </form>
-    <br>
-    <br>
-    <div id="response">Your message will appear here</div>
-    <script src="scripts.js"></script>
+    <div class="container">
+        <h1>AI Study Tool</h1>
+        <div id="response"></div>
+        <form id="myForm" onsubmit="event.preventDefault(); handleSubmit();">
+          <input type="text" name="message" id="message" placeholder="Enter your message" autocomplete="off">
+          <button type="submit">Send</button>
+        </form>
+    </div>
 </body>
 </html>
